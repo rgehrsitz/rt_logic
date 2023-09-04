@@ -1,0 +1,6 @@
+{
+    "compilerOptions": {
+        "module": "CommonJS", // Output to CommonJS format
+        // ... other options
+    }
+}

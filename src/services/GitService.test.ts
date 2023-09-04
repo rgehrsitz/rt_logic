@@ -1,4 +1,4 @@
-import { GitService } from '../services/GitService';
+import { GitService } from './GitService';
 import simpleGit, { SimpleGit, DefaultLogFields } from 'simple-git';
 import { mockDeep, mockReset } from 'jest-mock-extended';
 

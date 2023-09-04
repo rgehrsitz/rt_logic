@@ -1,0 +1,21 @@
+{
+  "id": "b36ca3a3-4950-4a33-83aa-f188ed39e930",
+  "timestamp": "2023-09-04T21:55:18.709Z",
+  "equipment": {
+    "id": "a25c68cb-069a-44b7-ab48-71d2449a5d81",
+    "name": "Server",
+    "createdAt": "2023-09-04T21:55:18.709Z",
+    "updatedAt": "2023-09-04T21:55:18.709Z",
+    "children": [
+      {
+        "id": "6e72aa75-67b3-4f0c-b3a3-8b8dbe9c14bd",
+        "name": "Network Card",
+        "createdAt": "2023-09-04T21:55:18.709Z",
+        "updatedAt": "2023-09-04T21:55:18.709Z",
+        "children": [],
+        "userDefinedFields": {}
+      }
+    ],
+    "userDefinedFields": {}
+  }
+}

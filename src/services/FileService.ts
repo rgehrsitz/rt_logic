@@ -11,10 +11,14 @@ export class FileService {
     }
 
     // Load Equipment object from a JSON file
+    // Load Equipment object from a JSON file
     static loadEquipmentFromJSON (filename: string): Equipment {
         const filePath = path.resolve(__dirname, filename);
         const data = fs.readFileSync(filePath, 'utf-8');
-        return JSON.parse(data) as Equipment;
+        const parsedData = JSON.parse(data) as Equipment;
+        parsedData.createdAt = new Date(parsedData.createdAt);
+        parsedData.updatedAt = new Date(parsedData.updatedAt);
+        return parsedData;
     }
 
     // Save Snapshot object to a JSON file
@@ -27,6 +31,10 @@ export class FileService {
     static loadSnapshotFromJSON (filename: string): Snapshot {
         const filePath = path.resolve(__dirname, filename);
         const data = fs.readFileSync(filePath, 'utf-8');
-        return JSON.parse(data) as Snapshot;
+        const parsedData = JSON.parse(data) as Snapshot;
+        parsedData.timestamp = new Date(parsedData.timestamp);
+        parsedData.equipment.createdAt = new Date(parsedData.equipment.createdAt);
+        parsedData.equipment.updatedAt = new Date(parsedData.equipment.updatedAt);
+        return parsedData;
     }
 }

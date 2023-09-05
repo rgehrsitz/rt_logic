@@ -1,3 +1,11 @@
 /node_modules
 src/services/snapshot_updated.json
 src/services/snapshot.json
+src/services/snapshot_to_delete.json
+src/services/snapshot_to_modify.json
+src/services/snapshot_to_rollback.json
+src/services/snapshot_updated.json
+src/services/snapshot_updated.json
+src/services/snapshot1.json
+src/services/snapshot2.json
+src/services/snapshot_updated.json

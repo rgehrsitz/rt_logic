@@ -1,14 +1,15 @@
 import simpleGit, { SimpleGit } from 'simple-git';
+import * as fs from 'fs';
 
 export class GitService {
     git: SimpleGit;
 
-    constructor(repoPath: string) {
-        this.git = simpleGit(repoPath);
+    constructor(private workingDir: string) {
+        this.git = simpleGit({ baseDir: workingDir });
     }
 
     // Initialize a new Git repository
-    async initRepo () {
+    async initRepo (): Promise<void> {
         try {
             await this.git.init();
         } catch (error) {
@@ -17,8 +18,13 @@ export class GitService {
     }
 
     // Commit a file to the repository
-    async commitFile (filename: string, commitMessage: string) {
+    async commitFile (filename: string, commitMessage: string): Promise<void> {
         try {
+            console.log("Current Directory:", this.workingDir);  // Debug line
+            const fileList = await this.git.raw(['ls-files']);
+
+            console.log("Files:", fileList);  // Debug line
+
             await this.git.add(filename);
             await this.git.commit(commitMessage);
         } catch (error) {

@@ -1,25 +1,25 @@
 {
-  "id": "4dbfa66d-a861-4c18-aa9c-14aa1f9cbd1a",
-  "timestamp": "2023-09-05T00:08:25.241Z",
+  "id": "520d1a4f-a941-46b8-a425-c6178d9044aa",
+  "timestamp": "2023-09-05T01:12:41.618Z",
   "equipment": {
-    "id": "d224f791-c05a-4f1e-a589-7b43c7cf7991",
+    "id": "5ead3196-bcf1-4de3-9f90-64f6400370f6",
     "name": "Server",
-    "createdAt": "2023-09-05T00:08:25.241Z",
-    "updatedAt": "2023-09-05T00:08:25.241Z",
+    "createdAt": "2023-09-05T01:12:41.618Z",
+    "updatedAt": "2023-09-05T01:12:41.618Z",
     "children": [
       {
-        "id": "f698b97e-d419-4ddf-a127-34f50260cba9",
+        "id": "01009ec6-7b44-49ca-8360-7e8aa7b7cb5f",
         "name": "Network Card",
-        "createdAt": "2023-09-05T00:08:25.241Z",
-        "updatedAt": "2023-09-05T00:08:25.241Z",
+        "createdAt": "2023-09-05T01:12:41.618Z",
+        "updatedAt": "2023-09-05T01:12:41.618Z",
         "children": [],
         "userDefinedFields": {}
       },
       {
-        "id": "cc1deca0-b8f7-4f87-8fb3-357ee5abe722",
+        "id": "1c40abc1-b76a-4f61-bdec-943d680e187d",
         "name": "Network Card",
-        "createdAt": "2023-09-05T00:08:25.241Z",
-        "updatedAt": "2023-09-05T00:08:25.241Z",
+        "createdAt": "2023-09-05T01:12:41.618Z",
+        "updatedAt": "2023-09-05T01:12:41.618Z",
         "children": [],
         "userDefinedFields": {}
       }

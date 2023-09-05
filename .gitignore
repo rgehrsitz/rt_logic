@@ -1,1 +1,3 @@
 /node_modules
+src/services/snapshot_updated.json
+src/services/snapshot.json

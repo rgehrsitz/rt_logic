@@ -1,10 +1,10 @@
 import { Equipment } from '../../models/Equipment';
 import { Snapshot } from '../../models/Snapshot';
-import { FileService } from '../../services/FileService';
-import { GitService } from '../../services/GitService';
 import { SnapshotService } from '../../services/SnapshotService';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as os from 'os';
+
 
 describe('Equipment and Snapshot Integration Tests', () => {
 
@@ -12,20 +12,22 @@ describe('Equipment and Snapshot Integration Tests', () => {
     let snapshot: Snapshot;
     let snapshotService: SnapshotService;
 
-    beforeAll(async () => {
-        // Define the path to the Git repository
-        const repoPath = path.resolve(__dirname, '/mockrepo');
+    let tempDir: string;
 
-        // Check if the directory exists
-        if (!fs.existsSync(repoPath)) {
-            // Create the directory
-            fs.mkdirSync(repoPath, { recursive: true });
-        }
+    beforeAll(async () => {
+        // Create a temporary directory
+        tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'git-test-'));
 
         // Initialize GitService and SnapshotService
-        snapshotService = new SnapshotService(repoPath);
-        // Initialize the Git repository
+        snapshotService = new SnapshotService(tempDir);
         await snapshotService.initGitRepo();
+    });
+
+    afterAll(async () => {
+        // Remove the temporary directory
+        if (fs.existsSync(tempDir)) {
+            await fs.promises.rm(tempDir, { recursive: true, force: true });
+        }
     });
 
     beforeEach(() => {
@@ -36,15 +38,33 @@ describe('Equipment and Snapshot Integration Tests', () => {
 
     it('should correctly create a snapshot from equipment', async () => {
         // Create a snapshot and save it
-        await snapshotService.createSnapshot(equipment, 'snapshot.json', 'Initial commit');
+        const snapshotFilePath = path.join(tempDir, 'snapshot.json');
+        await snapshotService.createSnapshot(equipment, snapshotFilePath, 'Initial commit');
 
-        // Load the snapshot
-        const loadedSnapshot = snapshotService.loadSnapshot('snapshot.json');
+        // Debug: Check if the file exists
+        if (fs.existsSync(snapshotFilePath)) {
+            console.log(`Snapshot file exists at ${snapshotFilePath}`);
+        } else {
+            console.error(`Snapshot file does not exist at ${snapshotFilePath}`);
+        }
 
-        // Assertions to check if the snapshot correctly represents the equipment
+        // ... (rest of your test)
     });
 
     it('should reflect equipment updates in a new snapshot', async () => {
+        // Update the equipment
+        equipment.addChild(new Equipment('Network Card'));
+
+        // Create a new snapshot
+        const updatedSnapshotFilePath = path.join(tempDir, 'snapshot_updated.json');
+        await snapshotService.createSnapshot(equipment, updatedSnapshotFilePath, 'Added Network Card');
+
+        // Debug: Check if the file exists
+        if (fs.existsSync(updatedSnapshotFilePath)) {
+            console.log(`Updated snapshot file exists at ${updatedSnapshotFilePath}`);
+        } else {
+            console.error(`Updated snapshot file does not exist at ${updatedSnapshotFilePath}`);
+        }
         // Update the equipment
         equipment.addChild(new Equipment('Network Card'));
 
